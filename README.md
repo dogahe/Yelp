@@ -11,5 +11,5 @@ In this sample project, we use Yelp's API to search for business establishments 
 - The app prompts you for access to location services on your iOS device. 
 - You should see a text box that you can enter any search terms for any business you are looking for. For example you can search for "Donuts" 🍩 , "Pizza" 🍕 or "Dentist" 🦷.
 - Tap the Search button to see the results. 
-- If you tap on any result you will be shown a new page with details of the business such as its name, address, ratings and distance from your current location.
+- If you tap on any result you will be shown a new page with details of the business such as its name, address, ratings and distance from your current location. You will also see a map that shows your location (blinking blue circle) and a pin on top of the business location.  
 
