@@ -60,6 +60,11 @@ class MainViewController: UIViewController {
             }
             
             guard let path = Bundle.main.path(forResource: "YelpAPI", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path), let token = dict["API_KEY"] as? String else {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: AppError.missingAPiKeyInPlist.description, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
                 return
             }
             

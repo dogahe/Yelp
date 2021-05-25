@@ -30,7 +30,6 @@ class BusinessDetailsViewController: UIViewController {
             distanceLabel.text = "\(String(format: "%.1f", business.distance * metersToMile)) mi"
             mapView.mapType = MKMapType.standard
             mapView.userTrackingMode = .follow
-            mapView.
             
             let location = CLLocationCoordinate2D(latitude: business.coordinates.latitude,longitude: business.coordinates.longitude)
             

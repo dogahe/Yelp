@@ -13,6 +13,7 @@ enum AppError: Error {
     case urlSessionError
     case parseError
     case badSearchTerm
+    case missingAPiKeyInPlist
 }
 
 extension AppError {
@@ -28,6 +29,8 @@ extension AppError {
             return "Error parsing Yelp Data."
         case .badSearchTerm:
             return "There is a problem in your search term."
+        case .missingAPiKeyInPlist:
+            return "Make sure you have entered a valid Yelp API_KEY in the file YelpAPI.plist in the project under the key named API_KEY"
         }
     }
 }
@@ -62,7 +65,7 @@ class YelpService {
                 } else {
                     if let httpResponse = response as? HTTPURLResponse {
                         
-                        if httpResponse.statusCode == 400 {
+                        if httpResponse.statusCode == 401 || httpResponse.statusCode == 400 {
                             completion(.failure(AppError.invalidAPIKey))
                             return
                         } else if httpResponse.statusCode != 200 {
