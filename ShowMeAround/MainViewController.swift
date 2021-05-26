@@ -109,23 +109,35 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let businesses = businesses {
-            return businesses.count
+            if businesses.isEmpty {
+                return 1
+            } else {
+                return businesses.count
+            }
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessTableViewCell {
-            guard let businesses = businesses else { return UITableViewCell() }
-            let business = businesses[indexPath.row]
-            cell.nameLabel.text = business.name
-            return cell
+        if let businesses = businesses {
+            if businesses.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NoBusinessCell", for: indexPath)
+                return cell
+            } else {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessTableViewCell {
+                    let business = businesses[indexPath.row]
+                    cell.nameLabel.text = business.name
+                    return cell
+                }
+            }
+        } else {
+            return UITableViewCell()
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let businesses = businesses else {
+        guard let businesses = businesses, !businesses.isEmpty else {
             return
         }
         let business = businesses[indexPath.row]
