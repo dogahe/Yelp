@@ -84,7 +84,6 @@ class YelpService {
                                 print(error)
                                 completion(.failure(AppError.parseError))
                             }
-                            
                         } else {
                             completion(.failure(AppError.someOtherErrorFromYelp))
                         }
@@ -93,6 +92,5 @@ class YelpService {
             }.resume()
         }
     }
-    
 }
 

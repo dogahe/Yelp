@@ -51,6 +51,7 @@ class MainViewController: UIViewController {
         textField.resignFirstResponder()
         if let term = textField.text {
             getCurrentLocationIfPossible()
+            // Use this location if location is not available through CoreLocation
             var lat: Double = 39.750561
             var lon: Double = -105.000891
             
@@ -67,7 +68,6 @@ class MainViewController: UIViewController {
                 }
                 return
             }
-            
             
             YelpService.shared.getBusiness(term, lat, lon, token) { result in
                 switch result {
@@ -87,7 +87,6 @@ class MainViewController: UIViewController {
     
     func getCurrentLocationIfPossible() {
         let status = locationManager.authorizationStatus
-        print(status.rawValue)
         if status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled() {
             let alert = UIAlertController(title: "Location Service", message: "In order to find businesses around you, you need to enable location services for this app in Settings.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -149,17 +148,10 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             if location.horizontalAccuracy < 100 {
-                //print(location)
                 userLocation = location
             }
         }
     }
-    /*
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        let status = manager.authorizationStatus
-        print("📍 \(status.rawValue)")
-     }
-     */
 }
 
 extension MainViewController: UITextFieldDelegate {
