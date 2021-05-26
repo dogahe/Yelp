@@ -13,3 +13,5 @@ In this sample project, we use Yelp's API to search for business establishments 
 - Tap the Search button to see the results. 
 - If you tap on any result you will be shown a new page with details of the business such as its name, address, ratings and distance from your current location. You will also see a map that shows your location (blinking blue circle) and a pin on top of the business location.  
 
+## How it works
+- This app takes advantage of one of Yelp APIs `/businesses/search` by passing parameters `latitude`, `longitude`, and `term`. By keeping the rest of parameters as default values, this API returns a list of businesses that are within certain vicinity of the location (`latitude`, `longitude`) and matches the search `term`, if there is one passed in. 
