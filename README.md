@@ -1,4 +1,4 @@
-In this sample project, we use Yelp's API to search for business establishments around user's location and show a list and details and map for each business. 
+In this sample project, we use Yelp's API to search for business establishments around user's location and show a list, details, and map for each business. 
 
 ## How to run this porject
 - Clone the project on your mac. 
